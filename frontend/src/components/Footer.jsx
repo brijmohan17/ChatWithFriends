@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="w-full glass text-white shadow-lg py-12 px-6 mt-8 border-t border-slate-700">
+    <footer className="w-full bg-slate-800 text-white shadow-inner shadow-gray-950 py-12 px-6">
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         
         {/* Brand & Description */}
         <div className="space-y-4">
           <h2 className="text-2xl font-extrabold flex items-center gap-2">
-            <FaPenAlt className="text-blue-400" /> <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">Chat Application</span>
+            <FaPenAlt /> Chat Application
           </h2>
           <p className="text-gray-300">
             Building real‑time connections—one chat at a time. Stay in touch, collaborate, and share moments.
@@ -20,9 +20,9 @@ const Footer = () => {
               <a
                 key={i}
                 href="#"
-                className="p-2 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full shadow-md hover:scale-110 hover:from-blue-600 hover:to-cyan-500 transition-all"
+                className="p-2 bg-gray-700 rounded-full hover:bg-gray-600 transition"
               >
-                <Icon size={18} className="text-white" />
+                <Icon size={16} className="text-white" />
               </a>
             ))}
           </div>
@@ -41,7 +41,7 @@ const Footer = () => {
               <li key={idx}>
                 <Link
                   to={link.to}
-                  className="hover:text-cyan-400 hover:underline transition-all font-medium"
+                  className="hover:text-blue-600 hover:underline transition"
                 >
                   {link.label}
                 </Link>
@@ -57,7 +57,7 @@ const Footer = () => {
             <li>
               <a
                 href="#"
-                className="hover:text-cyan-400 hover:underline transition-all font-medium"
+                className="hover:text-blue-600 hover:underline transition"
               >
                 Documentation
               </a>
@@ -65,7 +65,7 @@ const Footer = () => {
             <li>
               <a
                 href="#"
-                className="hover:text-cyan-400 hover:underline transition-all font-medium"
+                className="hover:text-blue-600 hover:underline transition"
               >
                 FAQs
               </a>
@@ -73,7 +73,7 @@ const Footer = () => {
             <li>
               <a
                 href="#"
-                className="hover:text-cyan-400 hover:underline transition-all font-medium"
+                className="hover:text-blue-600 hover:underline transition"
               >
                 Support
               </a>
@@ -81,7 +81,7 @@ const Footer = () => {
             <li>
               <a
                 href="#"
-                className="hover:text-cyan-400 hover:underline transition-all font-medium"
+                className="hover:text-blue-600 hover:underline transition"
               >
                 Privacy Policy
               </a>
@@ -99,11 +99,11 @@ const Footer = () => {
             <input
               type="email"
               placeholder="Your email"
-              className="w-full px-4 py-2 rounded-lg text-gray-900 focus:outline-none shadow-md border border-slate-200"
+              className="w-full px-4 py-2 rounded-md text-gray-900 focus:outline-none"
             />
             <button
               type="submit"
-              className="px-4 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-semibold shadow-md hover:from-blue-600 hover:to-cyan-500 transition-all"
+              className="px-4 py-2 bg-blue-600 rounded-md hover:bg-blue-500 transition font-medium"
             >
               Subscribe
             </button>
@@ -115,13 +115,13 @@ const Footer = () => {
       <div className="mt-12 border-t border-gray-700 pt-6 text-sm text-gray-400 flex flex-col md:flex-row justify-between items-center">
         <p>© {new Date().getFullYear()} Chat Application. All rights reserved.</p>
         <div className="space-x-4 mt-4 md:mt-0">
-          <Link className="hover:text-cyan-400 transition-all font-medium" to="/terms">
+          <Link className="hover:text-blue-600 transition" to="/terms">
             Terms
           </Link>
-          <Link className="hover:text-cyan-400 transition-all font-medium" to="/privacy">
+          <Link className="hover:text-blue-600 transition" to="/privacy">
             Privacy
           </Link>
-          <Link className="hover:text-cyan-400 transition-all font-medium" to="/contact">
+          <Link className="hover:text-blue-600 transition" to="/contact">
             Contact
           </Link>
         </div>

@@ -12,40 +12,50 @@ const ChatDetailsBox = () => {
 	const [detailView, setDetailView] = useState("overview");
 	return (
 		<>
-			<div className="glass w-fit h-[60vh] p-4 flex flex-col gap-3 rounded-2xl shadow-xl border border-cyan-400/30 animate-fade-in">
-				<div className="flex flex-col gap-3">
-					<button
-						className={`flex items-center gap-2 px-4 py-2 rounded-full font-semibold transition-all shadow-md border border-cyan-400/20 focus:outline-none ${detailView === "overview" ? "bg-gradient-to-r from-cyan-400/30 to-blue-900/40 text-cyan-200" : "bg-slate-800/80 text-white hover:bg-cyan-400/10"}`}
-						onClick={() => setDetailView("overview")}
-						title="Overview"
-					>
-						<CiCircleInfo fontSize={20} />
-						<span className="hidden sm:block">Overview</span>
-					</button>
-					{selectedChat?.isGroupChat && (
-						<button
-							className={`flex items-center gap-2 px-4 py-2 rounded-full font-semibold transition-all shadow-md border border-cyan-400/20 focus:outline-none ${detailView === "members" ? "bg-gradient-to-r from-cyan-400/30 to-blue-900/40 text-cyan-200" : "bg-slate-800/80 text-white hover:bg-cyan-400/10"}`}
-							onClick={() => setDetailView("members")}
-							title="Members"
-						>
-							<HiOutlineUsers fontSize={20} />
-							<span className="hidden sm:block">Members</span>
-						</button>
-					)}
-					<button
-						className={`flex items-center gap-2 px-4 py-2 rounded-full font-semibold transition-all shadow-md border border-cyan-400/20 focus:outline-none ${detailView === "setting" ? "bg-gradient-to-r from-cyan-400/30 to-blue-900/40 text-cyan-200" : "bg-slate-800/80 text-white hover:bg-cyan-400/10"}`}
-						onClick={() => setDetailView("setting")}
-						title="Setting"
-					>
-						<IoSettingsOutline fontSize={20} />
-						<span className="hidden sm:block">Setting</span>
-					</button>
+			<div className="w-fit h-[60vh] p-2 flex flex-col gap-1.5 bg-slate-900">
+				<div
+					className={`flex gap-2 items-center p-1 text-white rounded-md px-2 cursor-pointer ${
+						detailView === "overview"
+							? "bg-blue-950"
+							: "bg-slate-800"
+					}`}
+					onClick={() => setDetailView("overview")}
+					title="Overview"
+				>
+					<CiCircleInfo fontSize={18} />
+					<span className="hidden sm:block">Overview</span>
 				</div>
-				<div className="w-full h-[60vh] mt-2">
-					{detailView === "overview" && <Overview />}
-					{detailView === "members" && <Member />}
-					{detailView === "setting" && <ChatSetting />}
+				{selectedChat?.isGroupChat && (
+					<div
+						className={`flex gap-2 items-center p-1 text-white rounded-md px-2 cursor-pointer ${
+							detailView === "members"
+								? "bg-blue-950"
+								: "bg-slate-800"
+						}`}
+						onClick={() => setDetailView("members")}
+						title="Member"
+					>
+						<HiOutlineUsers fontSize={18} />
+						<span className="hidden sm:block">Members</span>
+					</div>
+				)}
+				<div
+					className={`flex gap-2 items-center p-1 text-white rounded-md px-2 cursor-pointer ${
+						detailView === "setting"
+							? "bg-blue-950"
+							: "bg-slate-800"
+					}`}
+					onClick={() => setDetailView("setting")}
+					title="Setting"
+				>
+					<IoSettingsOutline fontSize={18} />
+					<span className="hidden sm:block">Setting</span>
 				</div>
+			</div>
+			<div className="w-full h-[60vh]">
+				{detailView === "overview" && <Overview />}
+				{detailView === "members" && <Member />}
+				{detailView === "setting" && <ChatSetting />}
 			</div>
 		</>
 	);

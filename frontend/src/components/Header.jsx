@@ -117,36 +117,38 @@ const Header = () => {
 	return (
 		<div
 			id="header"
-			className="w-full h-16 fixed top-0 z-50 md:h-20 glass shadow-lg flex justify-between items-center px-6 py-2 font-semibold text-white backdrop-blur-md border-b border-slate-700"
+			className="w-full h-16 fixed top-0 z-50 md:h-20 shadow-gray-950 shadow-inner flex justify-between items-center p-4 font-semibold bg-slate-800 text-white"
 		>
-			<div className="flex items-center justify-start gap-3">
+			<div className="flex items-center justify-start gap-2">
 				<Link to={"/"}>
 					<img
 						src={Logo}
 						alt="ChatApp"
-						className="h-12 w-12 rounded-full border-2 border-blue-400 shadow-md bg-white object-cover"
+						className="h-12 w-12 rounded-tr-full rounded-tl-full rounded-br-full"
 					/>
 				</Link>
 				<Link to={"/"}>
-					<span className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent drop-shadow-lg">ChatApp</span>
+					<span>ChatApp</span>
 				</Link>
 			</div>
 
 			{user ? (
-				<div className="flex flex-nowrap items-center gap-3">
+				<div className="flex flex-nowrap items-center">
 					<span
-						className={`relative flex items-center justify-center cursor-pointer transition-all ${newMessageRecieved.length > 0 ? "animate-bounce" : ""}`}
+						className={`whitespace-nowrap ml-2 flex items-center justify-center relative mr-1.5 cursor-pointer ${
+							newMessageRecieved.length > 0
+								? "animate-bounce"
+								: "animate-none"
+						}`}
 						title={`You have ${newMessageRecieved.length} new notifications`}
 						onClick={() => dispatch(setNotificationBox(true))}
 					>
-						<MdNotificationsActive fontSize={28} className="text-blue-400 drop-shadow" />
-						{newMessageRecieved.length > 0 && (
-							<span className="absolute -top-2 -right-2 bg-pink-500 text-white text-xs rounded-full px-1.5 py-0.5 shadow-lg border-2 border-slate-800">
-								{newMessageRecieved.length}
-							</span>
-						)}
+						<MdNotificationsActive fontSize={25} />
+						<span className="font-semibold text-xs absolute top-0 right-0 translate-x-1.5 -translate-y-1.5">
+							{newMessageRecieved.length}
+						</span>
 					</span>
-					<span className="whitespace-nowrap ml-2 text-lg font-medium">
+					<span className="whitespace-nowrap ml-2">
 						Hi, {user.firstName}
 					</span>
 					<div
@@ -155,43 +157,43 @@ const Header = () => {
 							e.preventDefault();
 							dispatch(setHeaderMenu(!isHeaderMenu));
 						}}
-						className="flex items-center gap-2 border-2 border-blue-400 rounded-full bg-white/80 hover:bg-blue-100 shadow-md cursor-pointer px-2 py-1 transition-all"
+						className="flex flex-nowrap transition-all items-center ml-3  border border-slate-400 rounded-full bg-gradient-to-tr to-slate-800 text-black via-white  from-slate-800 hover:bg-gradient-to-br shadow-sm  cursor-pointer"
 					>
 						<img
 							src={user.image}
 							alt="gg"
-							className="w-10 h-10 rounded-full object-cover border border-slate-300"
+							className="w-10 h-10 rounded-full"
 						/>
 						<span className="m-2">
 							{isHeaderMenu ? (
-								<MdKeyboardArrowDown fontSize={22} />
+								<MdKeyboardArrowDown fontSize={20} />
 							) : (
-								<MdKeyboardArrowUp fontSize={22} />
+								<MdKeyboardArrowUp fontSize={20} />
 							)}
 						</span>
 					</div>
 					{isHeaderMenu && (
 						<div
 							ref={headerMenuBox}
-							className="glass border border-slate-500 text-white w-44 py-3 flex flex-col justify-center rounded-xl items-center gap-2 absolute top-16 right-4 z-40 shadow-xl backdrop-blur-lg"
+							className="border border-slate-500 text-white w-40 h-24 py-2 flex flex-col justify-center rounded-md items-center gap-1 absolute top-16 right-4 z-40 bg-slate-700"
 						>
 							<div
 								onClick={() => {
 									dispatch(setHeaderMenu(false));
 									dispatch(setProfileDetail());
 								}}
-								className="flex items-center w-full cursor-pointer justify-center hover:bg-blue-100 hover:text-blue-900 p-2 rounded-lg transition-all"
+								className="flex flex-nowrap items-center w-full h-fit cursor-pointer justify-center hover:bg-slate-400 hover:text-black p-1"
 							>
-								<div className="flex items-center justify-between w-2/4 gap-2">
+								<div className="flex items-center justify-between w-2/4">
 									<PiUserCircleLight fontSize={23} />
 									<span>Profile</span>
 								</div>
 							</div>
 							<div
-								className="flex items-center w-full cursor-pointer justify-center hover:bg-red-100 hover:text-red-700 p-2 rounded-lg transition-all"
+								className="flex flex-nowrap items-center w-full h-fit cursor-pointer justify-center hover:bg-slate-400 hover:text-black p-1"
 								onClick={handleLogout}
 							>
-								<div className="flex items-center justify-between w-2/4 gap-2">
+								<div className="flex items-center justify-between w-2/4">
 									<IoLogOutOutline fontSize={21} />
 									<span>Logout</span>
 								</div>
@@ -201,8 +203,8 @@ const Header = () => {
 				</div>
 			) : (
 				<Link to={"/signin"}>
-					<button className="py-2 px-6 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-bold shadow-lg hover:from-blue-600 hover:to-cyan-500 transition-all border-none">
-						Sign In
+					<button className="py-2 px-4 border border-slate-400 rounded-full bg-gradient-to-tr to-slate-800 text-black via-white  from-slate-800 hover:bg-gradient-to-br shadow-sm hover:shadow-white">
+						SignIn
 					</button>
 				</Link>
 			)}

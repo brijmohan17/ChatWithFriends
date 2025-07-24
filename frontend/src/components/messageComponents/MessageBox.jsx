@@ -84,41 +84,43 @@ const MessageBox = ({ chatId }) => {
 	return (
 		<>
 			<div
-				className="py-5 sm:px-8 px-3 w-full h-[7vh] font-semibold flex justify-between items-center glass shadow-md border-b border-cyan-400/40 text-white cursor-pointer rounded-t-2xl"
+				className="py-6 sm:px-6 px-3 w-full h-[7vh] font-semibold flex justify-between items-center bg-slate-800 text-white cursor-pointer"
 				onClick={() => dispatch(setChatDetailsBox(true))}
 			>
-				<div className="flex items-center gap-3">
+				<div className="flex items-center gap-2">
 					<div
 						onClick={(e) => {
 							e.stopPropagation();
 							dispatch(addSelectedChat(null));
 						}}
-						className="sm:hidden glass border border-cyan-400/60 hover:bg-cyan-400/20 h-9 w-9 rounded-full flex items-center justify-center cursor-pointer shadow-md"
+						className="sm:hidden bg-black/15 hover:bg-black/50 h-8 w-8 rounded-md flex items-center justify-center cursor-pointer"
 					>
-						<FaArrowLeft title="Back" fontSize={16} />
+						<FaArrowLeft title="Back" fontSize={14} />
 					</div>
 					<img
 						src={getChatImage(selectedChat, authUserId)}
 						alt=""
-						className="h-12 w-12 rounded-full border-2 border-cyan-400 shadow-md object-cover bg-white"
+						className="h-9 w-9 rounded-full"
 					/>
-					<h1 className="line-clamp-1 text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent drop-shadow">
+					<h1 className="line-clamp-1">
 						{getChatName(selectedChat, authUserId)}
 					</h1>
 				</div>
 				<CiMenuKebab
-					fontSize={22}
+					fontSize={18}
 					title="Menu"
-					className="cursor-pointer hover:text-cyan-400 transition-all"
+					className="cursor-pointer"
 				/>
 			</div>
 			{isChatDetailsBox && (
 				<div
-					className={`h-[60vh] w-full max-w-96 absolute top-0 left-0 z-20 p-1 ${isExiting ? "box-exit" : "box-enter"}`}
+					className={`h-[60vh] w-full max-w-96 absolute top-0 left-0 z-20 p-1 ${
+						isExiting ? "box-exit" : "box-enter"
+					}`}
 				>
 					<div
 						ref={chatDetailsBox}
-						className="flex glass border border-cyan-400/40 shadow-xl overflow-hidden rounded-2xl"
+						className="flex border border-slate-400 bg-slate-800 overflow-hidden rounded-lg"
 					>
 						<ChatDetailsBox />
 					</div>

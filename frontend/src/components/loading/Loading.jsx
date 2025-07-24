@@ -14,16 +14,15 @@ const Loading = () => {
 		};
 	}, []);
 	return (
-		<div className="fixed inset-0 flex flex-col items-center justify-center z-50 bg-black/40 backdrop-blur-md">
-			<div className="glass p-8 rounded-2xl shadow-2xl flex flex-col items-center animate-fade-in">
-				<div id="loader" className="mb-6"></div>
+		<div className="flex  flex-col items-center text-slate-300 min-h-screen w-full fixed top-0 justify-center z-50 bg-black/60">
+			<div id="loader"></div>
+			<div className="mt-5 h-10 w-24 flex justify-center items-center">
 				{showCancel && (
-					<button
-						onClick={() => dispatch(setLoading(false))}
-						className="mt-4 px-6 py-2 rounded-full bg-gradient-to-r from-slate-700 to-slate-900 text-white font-bold shadow hover:bg-slate-800/80 border border-slate-400/30"
-					>
-						Cancel
-					</button>
+					<div className="font-bold  cursor-pointer border border-slate-700 py-2 px-4 rounded-md bg-slate-900 hover:bg-black/80">
+						<span onClick={() => dispatch(setLoading(false))}>
+							Cancel
+						</span>
+					</div>
 				)}
 			</div>
 		</div>

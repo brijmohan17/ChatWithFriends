@@ -16,23 +16,27 @@ const NotificationBox = () => {
 		(store) => store?.myChat?.newMessageRecieved
 	);
 	return (
-		<div className="fixed inset-0 flex flex-col items-center justify-center z-50 bg-black/40 backdrop-blur-md">
-			<div className="glass p-6 pt-6 w-[95%] sm:w-[70%] md:w-[45%] lg:w-[35%] min-w-72 max-w-[600px] border border-cyan-400/30 rounded-2xl shadow-2xl h-fit mt-5 transition-all relative animate-fade-in">
-				<h2 className="text-3xl font-extrabold text-cyan-300 w-full text-center mb-4 tracking-tight drop-shadow">Notification</h2>
+		<div className="flex -m-2 sm:-m-4 flex-col items-center my-6 text-slate-300 min-h-screen w-full fixed top-0 justify-center z-50">
+			<div className="p-3 pt-4 w-[80%] sm:w-[60%] md:w-[50%] lg:w-[40%] min-w-72 max-w-[1000px] border border-slate-400 bg-slate-800 rounded-lg h-fit mt-5 transition-all relative">
+				<h2 className="text-2xl underline underline-offset-8 font-semibold text-slate-100 w-full text-center mb-2">
+					Notification
+				</h2>
 				{newMessageRecieved.length > 0 && (
-					<p className="px-4 pt-2 text-cyan-100 font-medium">
+					<p className="px-4 pt-2">
 						You have {newMessageRecieved.length} new notifications
 					</p>
 				)}
-				<div className="w-full py-4 flex flex-wrap items-center gap-3">
-					<div className="flex flex-col w-full px-4 gap-2 py-2 overflow-y-auto overflow-hidden scroll-style h-[50vh]">
+				<div className="w-full py-4 justify-evenly flex flex-wrap items-center gap-3">
+					<div className="flex flex-col w-full px-4 gap-1 py-2 overflow-y-auto overflow-hidden scroll-style h-[50vh]">
 						{newMessageRecieved.length == 0 && false ? (
 							<div>Shimmer</div>
 						) : (
 							<>
 								{newMessageRecieved?.length === 0 && (
 									<div className="w-full h-full flex justify-center items-center text-white">
-										<h1 className="text-base font-semibold">You have 0 new notifications</h1>
+										<h1 className="text-base font-semibold">
+											You have 0 new notifications
+										</h1>
 									</div>
 								)}
 								{newMessageRecieved?.map((message) => {

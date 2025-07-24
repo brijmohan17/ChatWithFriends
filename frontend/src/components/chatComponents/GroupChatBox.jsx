@@ -131,57 +131,87 @@ const GroupChatBox = () => {
 			});
 	};
 	return (
-		<div className="flex -m-2 sm:-m-4 flex-col items-center my-6 text-slate-300 min-h-screen w-full fixed top-0 justify-center z-50 bg-black/40 backdrop-blur-md">
-			<div className="glass p-6 pt-6 w-[95%] sm:w-[70%] md:w-[45%] lg:w-[35%] min-w-72 max-w-[600px] border border-cyan-400/30 rounded-2xl shadow-2xl h-fit mt-5 transition-all relative animate-fade-in">
-				<h2 className="text-3xl font-extrabold text-cyan-300 w-full text-center mb-4 tracking-tight drop-shadow">Create a Group</h2>
-				<div className="w-full py-4 flex flex-wrap items-center gap-4">
-					<div className="w-full flex flex-nowrap items-center justify-center gap-2 mb-2">
+		<div className="flex -m-2 sm:-m-4 flex-col items-center my-6 text-slate-300 min-h-screen w-full fixed top-0 justify-center z-50">
+			<div className="p-3 pt-4 w-[80%] sm:w-[60%] md:w-[50%] lg:w-[40%] min-w-72 max-w-[1000px] border border-slate-400 bg-slate-800 rounded-lg h-fit mt-5 transition-all relative">
+				<h2 className="text-2xl underline underline-offset-8 font-semibold text-slate-100 w-full text-center mb-2">
+					Create a Group
+				</h2>
+				<div className="w-full py-4 justify-evenly flex flex-wrap items-center gap-3">
+					<div className="w-full flex flex-nowrap items-center justify-center gap-2">
 						<input
 							value={inputUserName}
 							id="search"
 							type="text"
 							placeholder="Search Users..."
-							className="w-2/3 border border-cyan-400/30 bg-white/10 text-white py-2 px-4 font-normal outline-none rounded-full shadow focus:border-cyan-400 focus:bg-white/20 transition-all"
+							className="w-2/3 border border-slate-600 py-1 px-2 font-normal outline-none rounded-md cursor-pointer bg-transparent active:bg-black/20"
 							onChange={(e) => setInputUserName(e.target?.value)}
 						/>
 						<label htmlFor="search" className="cursor-pointer">
-							<FaSearch title="Search Users" className="text-cyan-400" />
+							<FaSearch title="Search Users" />
 						</label>
 					</div>
 					<div
 						ref={groupUser}
-						className="flex w-full px-4 gap-2 py-2 overflow-x-auto scroll-style-x"
+						className="flex w-full px-4 gap-1 py-2 overflow-auto scroll-style-x"
 					>
 						{isGroupUsers?.length != 0 &&
 							isGroupUsers?.map((user) => {
 								return (
-									<div key={user?._id} className="flex items-center gap-2 bg-cyan-400/10 border border-cyan-400/40 px-3 py-1 rounded-full shadow text-cyan-200 font-semibold mr-2 mb-1 animate-fade-in">
-										<img src={user?.image} alt="avatar" className="h-7 w-7 rounded-full border-2 border-cyan-400 object-cover bg-white mr-1" />
-										<span>{user?.firstName}</span>
-										<button title={`Remove ${user?.firstName}`} onClick={() => handleRemoveGroupUser(user?._id)} className="ml-1 text-cyan-300 hover:text-pink-400 transition-all">
+									<div
+										key={user?._id}
+										className="flex justify-center items-center gap-1 border border-slate-600 py-1 px-2 font-normal rounded-md cursor-pointer bg-transparent active:bg-black/20 text-nowrap"
+									>
+										<h1>{user?.firstName}</h1>
+										<div
+											title={`Remove ${user?.firstName}`}
+											onClick={() =>
+												handleRemoveGroupUser(user?._id)
+											}
+											className="bg-black/15 hover:bg-black/50 h-6 w-6 m-0.5 rounded-md flex items-center justify-center cursor-pointer"
+										>
 											<MdOutlineClose size={18} />
-										</button>
+										</div>
 									</div>
 								);
 							})}
 					</div>
-					<div className="flex flex-col w-full px-4 gap-2 py-2 overflow-y-auto overflow-hidden scroll-style h-[45vh]">
+					<div className="flex flex-col w-full px-4 gap-1 py-2 overflow-y-auto overflow-hidden scroll-style h-[50vh]">
 						{selectedUsers.length == 0 && isChatLoading ? (
 							<ChatShimmer />
 						) : (
 							<>
 								{selectedUsers?.length === 0 && (
 									<div className="w-full h-full flex justify-center items-center text-white">
-										<h1 className="text-base font-semibold">No users registered.</h1>
+										<h1 className="text-base font-semibold">
+											No users registered.
+										</h1>
 									</div>
 								)}
 								{selectedUsers?.map((user) => {
 									return (
-										<div key={user?._id} className="w-full h-16 glass border border-cyan-400/30 rounded-xl flex justify-start items-center p-2 font-semibold gap-3 hover:bg-cyan-400/10 transition-all cursor-pointer text-white shadow-md mb-2 animate-fade-in" onClick={() => { addGroupUser(user); setInputUserName(""); }}>
-											<img className="h-12 min-w-12 rounded-full border-2 border-cyan-400 object-cover bg-white" src={user?.image} alt="img" />
+										<div
+											key={user?._id}
+											className="w-full h-16 border-slate-500 border rounded-lg flex justify-start items-center p-2 font-semibold gap-2 hover:bg-black/50 transition-all cursor-pointer text-white"
+											onClick={() => {
+												addGroupUser(user);
+												setInputUserName("");
+											}}
+										>
+											<img
+												className="h-12 min-w-12 rounded-full"
+												src={user?.image}
+												alt="img"
+											/>
 											<div className="w-full">
-												<span className="line-clamp-1 capitalize text-lg font-bold text-cyan-200">{user?.firstName} {user?.lastName}</span>
-												<span className="text-xs font-light text-cyan-100">{SimpleDateAndTime(user?.createdAt)}</span>
+												<span className="line-clamp-1 capitalize">
+													{user?.firstName}{" "}
+													{user?.lastName}
+												</span>
+												<span className="text-xs font-light">
+													{SimpleDateAndTime(
+														user?.createdAt
+													)}
+												</span>
 											</div>
 										</div>
 									);
@@ -190,15 +220,15 @@ const GroupChatBox = () => {
 						)}
 					</div>
 				</div>
-				<div className="w-full flex flex-nowrap items-center justify-center gap-2 mt-4">
+				<div className="w-full flex flex-nowrap items-center justify-center gap-2">
 					<input
 						type="text"
 						placeholder="Group Name"
-						className="w-2/3 border border-cyan-400/30 bg-white/10 text-white py-2 px-4 font-normal outline-none rounded-full shadow focus:border-cyan-400 focus:bg-white/20 transition-all"
+						className="w-2/3 border border-slate-600 py-1 px-2 font-normal outline-none rounded-md cursor-pointer bg-transparent active:bg-black/20"
 						onChange={(e) => setGroupName(e.target?.value)}
 					/>
 					<button
-						className="px-6 py-2 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold shadow-lg hover:from-cyan-500 hover:to-blue-600 transition-all border-none"
+						className="border border-slate-600 py-1 px-2 rounded-lg bg-green-400 text-black font-semibold hover:text-white hover:bg-green-700 "
 						onClick={handleCreateGroupChat}
 					>
 						Create
@@ -207,9 +237,9 @@ const GroupChatBox = () => {
 				<div
 					title="Close"
 					onClick={() => dispatch(setGroupChatBox())}
-					className="glass border border-cyan-400/30 hover:bg-cyan-400/10 h-9 w-9 rounded-full flex items-center justify-center absolute top-3 right-3 cursor-pointer shadow-md text-cyan-300 hover:text-pink-400 transition-all"
+					className="bg-black/15 hover:bg-black/50 h-7 w-7 rounded-md flex items-center justify-center absolute top-3 right-3 cursor-pointer"
 				>
-					<MdOutlineClose size={24} />
+					<MdOutlineClose size={22} />
 				</div>
 			</div>
 		</div>
