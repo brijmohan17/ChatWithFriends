@@ -8,7 +8,7 @@ A real‑time chat application built with the **MERN** stack (MongoDB, Express, 
 ## Demo
 
 You can try the live demo here:  
-[https://chat-application-jack.vercel.app](https://chat-application-jack.vercel.app)
+[https://chat-with-friends-psi.vercel.app/](https://chat-with-friends-psi.vercel.app/)
 
 ---
 
