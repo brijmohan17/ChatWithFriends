@@ -114,85 +114,55 @@ const ChatSetting = () => {
 	};
 
 	return (
-		<div className="flex flex-col p-2 gap-2 text-white relative h-full z-10 overflow-auto scroll-style">
-			<h1 className="font-semibold text-lg w-full text-center my-2">
-				Setting
-			</h1>
-			<div
+		<div className="glass flex flex-col p-4 gap-4 text-white relative h-full z-10 overflow-auto scroll-style rounded-2xl shadow-xl border border-cyan-400/30 animate-fade-in">
+			<h1 className="font-bold text-xl w-full text-center my-2 text-cyan-200 tracking-tight drop-shadow">Settings</h1>
+			<button
 				onClick={handleClearChat}
-				className="w-full h-8 border-slate-500 border text-sm rounded-lg flex justify-between items-center p-2 font-normal gap-2 transition-all cursor-pointer text-white"
+				className="w-full py-3 my-1 rounded-full glass border border-cyan-400/30 text-cyan-200 font-semibold flex justify-between items-center px-4 shadow-md hover:bg-cyan-400/10 hover:text-cyan-300 transition-all"
 			>
-				<h1>Clear Chat</h1>
-				<CiCircleInfo
-					fontSize={15}
-					title={
-						selectedChat?.isGroupChat
-							? "Admin access only"
-							: "Clear Chat"
-					}
-					className="cursor-pointer"
-				/>
-			</div>
+				<span>Clear Chat</span>
+				<CiCircleInfo fontSize={18} title={selectedChat?.isGroupChat ? "Admin access only" : "Clear Chat"} className="cursor-pointer" />
+			</button>
 			{selectedChat?.isGroupChat ? (
-				<div
+				<button
 					onClick={handleDeleteGroup}
-					className="w-full h-8 border-slate-500 border text-sm rounded-lg flex justify-between items-center p-2 font-normal gap-2 transition-all cursor-pointer text-white"
+					className="w-full py-3 my-1 rounded-full glass border border-pink-400/30 text-pink-300 font-semibold flex justify-between items-center px-4 shadow-md hover:bg-pink-400/10 hover:text-pink-400 transition-all"
 				>
-					<h1>Delete Group</h1>
-					<CiCircleInfo
-						fontSize={15}
-						title="Admin access only"
-						className="cursor-pointer"
-					/>
-				</div>
+					<span>Delete Group</span>
+					<CiCircleInfo fontSize={18} title="Admin access only" className="cursor-pointer" />
+				</button>
 			) : (
-				<div
+				<button
 					onClick={handleDeleteChat}
-					className="w-full h-8 border-slate-500 border text-sm rounded-lg flex justify-between items-center p-2 font-normal gap-2 transition-all cursor-pointer text-white"
+					className="w-full py-3 my-1 rounded-full glass border border-pink-400/30 text-pink-300 font-semibold flex justify-between items-center px-4 shadow-md hover:bg-pink-400/10 hover:text-pink-400 transition-all"
 				>
-					<h1>Delete Chat</h1>
-					<CiCircleInfo
-						fontSize={15}
-						title="Delete Chat"
-						className="cursor-pointer"
-					/>
-				</div>
+					<span>Delete Chat</span>
+					<CiCircleInfo fontSize={18} title="Delete Chat" className="cursor-pointer" />
+				</button>
 			)}
 			{isConfirm && (
-				<div className="px-2 w-full fixed bottom-1 right-0">
-					<div
-						className={`w-full h-12 border-slate-500 ${
-							isConfirm === "clear-chat"
-								? "bg-blue-950"
-								: "bg-red-950"
-						}  border rounded-lg flex justify-between items-center p-2 font-semibold gap-2 transition-all cursor-pointer text-white `}
-					>
-						<h1>
+				<div className="fixed inset-0 flex items-end justify-center z-50 bg-black/30 backdrop-blur-sm">
+					<div className={`glass w-full max-w-md mb-6 p-6 rounded-2xl shadow-2xl border ${isConfirm === "clear-chat" ? "border-cyan-400/40 bg-cyan-900/80" : "border-pink-400/40 bg-pink-900/80"} flex flex-col items-center animate-fade-in`}>
+						<h1 className="font-bold text-lg mb-4 text-center">
 							{isConfirm === "clear-chat"
 								? "Clear chat confirmation?"
 								: isConfirm === "delete-group"
 								? "Delete group confirmation?"
 								: "Delete chat confirmation"}
 						</h1>
-						<div className="flex gap-1">
-							<div
-								onClick={() => {
-									setConfirm("");
-								}}
-								className="border border-slate-600 p-1.5 w-fit font-normal outline-none rounded-md cursor-pointer bg-transparent active:bg-black/20"
+						<div className="flex gap-4 justify-center">
+							<button
+								onClick={() => setConfirm("")}
+								className="px-6 py-2 rounded-full bg-gradient-to-r from-slate-700 to-slate-900 text-white font-semibold shadow hover:bg-slate-800/80 border border-slate-400/30"
 							>
-								<VscError fontSize={19} />
-							</div>
-							<div
-								onClick={
-									isConfirm === "clear-chat"
-										? handleClearChatCall
-										: handleDeleteChatCall
-								}
-								className="border border-slate-600 p-1.5 w-fit font-normal outline-none rounded-md cursor-pointer bg-transparent active:bg-black/20"
+								Cancel
+							</button>
+							<button
+								onClick={isConfirm === "clear-chat" ? handleClearChatCall : handleDeleteChatCall}
+								className={`px-6 py-2 rounded-full font-semibold shadow border ${isConfirm === "clear-chat" ? "bg-cyan-400/80 text-cyan-900 border-cyan-400 hover:bg-cyan-400/90" : "bg-pink-400/80 text-pink-900 border-pink-400 hover:bg-pink-400/90"}`}
 							>
-								<IoCheckmarkCircleOutline fontSize={19} />
-							</div>
+								Confirm
+							</button>
 						</div>
 					</div>
 				</div>

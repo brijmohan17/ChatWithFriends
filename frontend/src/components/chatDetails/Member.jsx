@@ -8,15 +8,15 @@ const Member = () => {
 	const [memberAddBox, setMemberAddBox] = useState(false);
 
 	return (
-		<div className="flex flex-col pt-2 gap-2 text-white relative h-full z-10 overflow-auto scroll-style">
-			<div className="font-semibold text-lg w-full text-center mt-2">
-				Members ( {selectedChat?.users?.length} )
+		<div className="glass flex flex-col pt-4 gap-4 text-white relative h-full z-10 overflow-auto scroll-style rounded-2xl shadow-xl border border-cyan-400/30 animate-fade-in">
+			<div className="font-bold text-xl w-full text-center mb-2 text-cyan-200 tracking-tight drop-shadow">Members ({selectedChat?.users?.length})</div>
+			<div className="w-full">
+				{memberAddBox ? (
+					<MemberAdd setMemberAddBox={setMemberAddBox} />
+				) : (
+					<MemberRemove setMemberAddBox={setMemberAddBox} />
+				)}
 			</div>
-			{memberAddBox ? (
-				<MemberAdd setMemberAddBox={setMemberAddBox} />
-			) : (
-				<MemberRemove setMemberAddBox={setMemberAddBox} />
-			)}
 		</div>
 	);
 };

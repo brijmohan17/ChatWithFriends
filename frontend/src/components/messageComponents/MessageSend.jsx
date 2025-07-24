@@ -122,14 +122,14 @@ const MessageSend = ({ chatId }) => {
                 </div>
             )} */}
 			<form
-				className="w-full flex items-center gap-1 h-[7vh] p-3 bg-slate-800 text-white"
+				className="w-full flex items-center gap-2 h-[7vh] px-4 py-2 glass shadow-lg border-t border-cyan-400/40 text-white rounded-b-2xl"
 				onSubmit={(e) => e.preventDefault()}
 			>
 				<label htmlFor="media" className="cursor-pointer">
 					<FaFolderOpen
 						title="Open File"
 						size={22}
-						className="active:scale-75 hover:text-green-400"
+						className="active:scale-90 hover:text-cyan-400 transition-all text-cyan-300"
 					/>
 				</label>
 				<input
@@ -143,7 +143,7 @@ const MessageSend = ({ chatId }) => {
 				/>
 				<input
 					type="text"
-					className="outline-none p-2 w-full bg-transparent"
+					className="outline-none px-4 py-2 w-full bg-transparent rounded-full border border-cyan-400/30 text-base focus:border-cyan-400 focus:bg-white/10 transition-all shadow-sm"
 					placeholder="Type a message"
 					value={newMessage}
 					onChange={(e) => handleTyping(e)}
@@ -151,22 +151,22 @@ const MessageSend = ({ chatId }) => {
 				<span className="flex justify-center items-center">
 					{newMessage?.trim() && !isSendLoading && (
 						<button
-							className="outline-none p-2 border-slate-500 border-l"
+							className="outline-none p-2 ml-2 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 shadow-md hover:scale-110 hover:from-cyan-500 hover:to-blue-600 transition-all border-none"
 							onClick={handleSendMessage}
 						>
 							<FaPaperPlane
 								title="Send"
-								size={18}
-								className="active:scale-75 hover:text-green-400"
+								size={20}
+								className="active:scale-90 text-white drop-shadow"
 							/>
 						</button>
 					)}
 					{isSendLoading && (
-						<button className="outline-none p-2 border-slate-500 border-l">
+						<button className="outline-none p-2 ml-2 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 shadow-md border-none animate-pulse">
 							<LuLoader
 								title="loading..."
-								fontSize={18}
-								className="animate-spin"
+								fontSize={20}
+								className="animate-spin text-white drop-shadow"
 							/>
 						</button>
 					)}
